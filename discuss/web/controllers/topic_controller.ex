@@ -17,7 +17,7 @@ defmodule Discuss.TopicController do
     changeset = Topic.changeset(%Topic{}, topic)
 
     case Repo.insert(changeset) do
-      {:ok, post} ->
+      {:ok, _topic} ->
         conn
         |> put_flash(:info, "Topic Created") #creates message of information that says topic created
         |> redirect(to: topic_path(conn, :index)) #redirects to the function index
