@@ -16,10 +16,13 @@ defmodule Discuss.Router do
   scope "/", Discuss do
     pipe_through :browser # Use the default browser stack
 
-    get "/", TopicController, :index
-    get "/topics/new", TopicController, :new  #when the url is equal to topics/new then it is going to
+    # get "/", TopicController, :index
+    # get "/topics/new", TopicController, :new  #when the url is equal to topics/new then it is going to
     #execute a function called new in the TopicController file
-    post "/topics", TopicController, :create
+    # post "/topics", TopicController, :create
+    # get "/topics/:id/edit", TopicController, :edit
+
+    resources "/", TopicController
 
   end
 
