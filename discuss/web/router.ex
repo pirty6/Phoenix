@@ -20,7 +20,6 @@ defmodule Discuss.Router do
     get "/topics/new", TopicController, :new  #when the url is equal to topics/new then it is going to
     #execute a function called new in the TopicController file
     post "/topics", TopicController, :create
-    get "/topics/:id/edit", TopicController, :edit
 
   end
 
