@@ -5,7 +5,8 @@ defmodule Discuss.User do
     field :email, :string
     field :provider, :string
     field :token, :string
-
+    has_many :topics, Discuss.Topic
+    has_many :commets, Discuss.Comment
     timestamps()
   end
 
@@ -13,5 +14,5 @@ defmodule Discuss.User do
     struct
     |>cast(params, [:email, :provider, :token])
     |>validate_required([:email, :provider, :token])
-   end
- end
+  end
+end

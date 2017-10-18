@@ -7,6 +7,7 @@ defmodule Discuss.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Discuss.Plugs.SetUser
   end
 
   pipeline :api do
@@ -17,22 +18,21 @@ defmodule Discuss.Router do
     pipe_through :browser # Use the default browser stack
 
     # get "/", TopicController, :index
-    # get "/topics/new", TopicController, :new  #when the url is equal to topics/new then it is going to
-    #execute a function called new in the TopicController file
+    # get "/topics/new", TopicController, :new
     # post "/topics", TopicController, :create
     # get "/topics/:id/edit", TopicController, :edit
+    # put "/topics/:id", TopicController, :update
+    # delete "/topics/:id", TopicController, :delete
 
     resources "/", TopicController
-
   end
 
   scope "/auth", Discuss do
     pipe_through :browser
-
-    get "/:provider", AuthController, :requests
+    get "/signout", AuthController, :signout
+    get "/:provider", AuthController, :request#s
     get "/:provider/callback", AuthController, :callback
-   end
-
+  end
 
   # Other scopes may use custom stacks.
   # scope "/api", Discuss do
